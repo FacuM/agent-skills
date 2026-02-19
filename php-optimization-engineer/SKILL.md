@@ -345,10 +345,66 @@ The PHP compiler is generally very good at optimizing code, however, there may b
 3. [Changes that may affect business logic]
 ```
 
+## Profiling with SPX
+
+**CRITICAL: When the user requests profiling or performance investigation, you MUST use SPX (Simple Profiling eXtension) as the profiler. Do NOT use Xdebug, Blackfire, Tideways, or any other profiler unless SPX is genuinely unavailable and all attempts to install it have failed.**
+
+SPX is the required profiler for this skill because:
+- Minimal performance overhead compared to other profilers
+- Built-in web UI for analyzing results
+- Detailed metrics including wall time, CPU time, idle time, memory, and I/O
+- No external service dependencies
+
+### SPX Profiling Workflow
+
+1. **Check SPX Availability**
+   ```bash
+   php -i | grep spx
+   ```
+   If SPX is available, note the version and configuration, especially the data directory location.
+
+2. **If SPX is Not Available**
+   - Use a Docker image with PHP and SPX pre-installed
+   - Or install SPX extension for the current PHP version
+   - Iterate until SPX is working before proceeding with profiling
+
+3. **Run SPX Profiler**
+   ```bash
+   # CLI profiling with comprehensive metrics
+   SPX_ENABLED=1 SPX_REPORT=full SPX_AUTO_START=1 SPX_BUILTINS=1 SPX_METRICS=wt,ct,it,zm,mor,io,ior,iow php your_script.php
+   
+   # Web request profiling (add to URL or header)
+   # Add SPX_ENABLED=1&SPX_REPORT=full to query string
+   # Or add X-SPX-Enabled: 1 header
+   ```
+
+4. **Analyze SPX Results**
+   ```bash
+   # Find the latest SPX report
+   ls -tr1 /path/to/spx/data/directory/ | tail -n 1
+   
+   # Open the web UI (if available)
+   # Navigate to /spx.php in your application
+   ```
+
+5. **Interpret SPX Metrics**
+   - `wt` - Wall Time: Total elapsed time
+   - `ct` - CPU Time: Time spent executing code
+   - `it` - Idle Time: Time waiting for I/O or external resources
+   - `zm` - Zend Memory: Memory allocated by PHP
+   - `mor` - Memory Own Retained: Memory retained by functions
+   - `io`, `ior`, `iow` - I/O operations (read/write)
+
+### When SPX Results Show Specific Patterns
+
+- **High `it` (Idle Time)**: Script is waiting for external resources (file I/O, network, database). Optimize those interactions or investigate infrastructure.
+- **High I/O metrics**: Many file/network operations. Consider caching, batching, or async processing.
+- **High memory metrics**: Memory leaks or inefficient data structures. Look for large arrays, missing unset(), or generators opportunities.
+
 ## Tips
 
 - **Start with Critical issues:** Focus on user-visible performance problems first
-- **Measure before and after:** Use profiling tools like Xdebug, Blackfire, or Tideways
+- **Measure before and after:** Use SPX profiler for accurate performance measurements
 - **One change at a time:** Apply optimizations incrementally to measure impact
 - **Consider trade-offs:** Some optimizations reduce readability; document why changes were made
 - **Test thoroughly:** Performance optimizations can introduce bugs; always test after changes
