@@ -7,6 +7,19 @@ A collection of small, task-focused skills you can drop into your workflow. Each
 - `php-optimization-engineer` - Automatically analyze and optimize PHP code for performance, memory, database queries, and caching.
 - `youtube-step-extractor` - Download a YouTube video, extract frames, and analyze visual steps.
 
+## Installation
+
+### Using OpenSkills
+
+[OpenSkills](https://github.com/numman-ali/openskills) is a CLI tool for managing AI agent skills. Install skills from this repository using:
+
+```bash
+# Install using NPX (no global installation required)
+npx openskills install https://github.com/FacuM/agent-skills.git
+```
+
+For more installation options and documentation, visit the [OpenSkills repository](https://github.com/numman-ali/openskills).
+
 ## Using A Skill
 
 1. Open the skill folder (for example, `youtube-step-extractor`).
