@@ -1,6 +1,6 @@
 ---
 name: php-optimization-engineer
-description: Automatically analyzes and optimizes PHP code by identifying performance bottlenecks, memory issues, and applying fixes directly to files. Creates backups before modifications and provides rollback instructions. Use when user wants to optimize PHP code, improve performance, reduce memory usage, or refactor for efficiency. Triggers on "optimize PHP", "PHP performance", "slow PHP script", "PHP memory issue", "improve PHP code", "PHP bottleneck", "PHP refactoring".
+description: Automatically analyzes and optimizes PHP code by identifying performance bottlenecks, memory issues, and applying fixes directly to files. Creates backups before modifications and provides rollback instructions. Use when user wants to optimize PHP code, improve performance, reduce memory usage, refactor for efficiency, profile code, or investigate deeper into performance issues. Triggers on "optimize PHP", "PHP performance", "slow PHP script", "PHP memory issue", "improve PHP code", "PHP bottleneck", "PHP refactoring", "profile PHP", "PHP profiler", "profile code", "investigate performance", "performance investigation", "debug performance", "analyze performance".
 ---
 
 # PHP Optimization Engineer
