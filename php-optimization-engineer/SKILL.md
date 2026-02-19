@@ -108,6 +108,7 @@ Look for:
 - Regex operations that could use string functions
 - Unnecessary object instantiation
 - Late static binding that could be optimized
+- (in Laravel) calls to `filled()`, `blank()` and `empty()` that could be optimized by using `isset()` or direct checks
 
 #### 3.2 Memory Analysis
 
