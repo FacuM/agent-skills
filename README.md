@@ -4,6 +4,7 @@ A collection of small, task-focused skills you can drop into your workflow. Each
 
 ## Available Skills
 
+- `knowledge-base-generator` - Detect when an agent loops on the same error and automatically search for solutions, then persist findings in an `AGENTS.md` knowledge base.
 - `php-optimization-engineer` - Automatically analyze and optimize PHP code for performance, memory, database queries, and caching.
 - `youtube-step-extractor` - Download a YouTube video, extract frames, and analyze visual steps.
 
