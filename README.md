@@ -4,6 +4,7 @@ A collection of small, task-focused skills you can drop into your workflow. Each
 
 ## Available Skills
 
+- `php-optimization-engineer` - Automatically analyze and optimize PHP code for performance, memory, database queries, and caching.
 - `youtube-step-extractor` - Download a YouTube video, extract frames, and analyze visual steps.
 
 ## Using A Skill
