@@ -403,7 +403,7 @@ SPX is the required profiler for this skill because:
 
 ## Common Tools for Validation
 
-In Laravel, look for any calls to `dd()` or `dump() that should be removed in production code. In Symfony, check for any `dump()` calls that may have been left in. In general, look for any debugging statements that may have been left in the code and remove them as part of the optimization process, these calls are generally leaking memory and should be removed in production code.
+In Laravel, look for any calls to `dd()` or `dump()` that should be removed in production code. In Symfony, check for any `dump()` calls that may have been left in. In general, look for any debugging statements that may have been left in the code and remove them as part of the optimization process, these calls are generally leaking memory and should be removed in production code.
 
 ## Limitations
 
