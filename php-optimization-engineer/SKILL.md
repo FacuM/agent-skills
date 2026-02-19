@@ -265,7 +265,7 @@ For every file modified, provide:
 - Files Analyzed: [count]
 - Optimizations Applied: [count]
 - Critical: [count] | High: [count] | Medium: [count] | Low: [count]
-- Backups Created: [list of .bak files]
+- Branch Created: [branch name]
 
 ## Applied Optimizations
 
@@ -273,7 +273,6 @@ For every file modified, provide:
 **File:** `path/to/file.php:123`
 **Priority:** Critical
 **Category:** Performance | Memory | Database | Caching
-**Backup:** `path/to/file.php.bak`
 
 **Original Code:**
 ```php
@@ -298,17 +297,6 @@ php -l path/to/file.php
 ```
 
 ---
-
-## Rollback Instructions
-
-To rollback all changes:
-```bash
-# Using backup files
-for f in $(find . -name "*.php.bak"); do mv "$f" "${f%.bak}"; done
-
-# Using git (if committed before optimization)
-git checkout -- .
-```
 
 ## Quick Wins Applied
 [List of easy-to-implement optimizations that were applied, if any]
