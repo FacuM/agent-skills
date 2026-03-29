@@ -28,6 +28,7 @@ This skill **automatically implements optimizations** directly in PHP files. To 
 1. Identify the PHP files or directories to analyze
 2. Determine the scope:
    - Determine the PHP version and framework (if any) in use
+   - Identify if the codebase is a monolith or a microservices architecture and if any specific frameworks are used (e.g., Laravel, Symfony, etc.)
    - Identify critical areas (e.g., high-traffic endpoints, known slow scripts)
    - Single file optimization
    - Module/component analysis
@@ -109,6 +110,15 @@ Look for:
 - Unnecessary object instantiation
 - Late static binding that could be optimized
 - (in Laravel) calls to `filled()`, `blank()` and `empty()` that could be optimized by using `isset()` or direct checks
+- (in Laravel) if the user claims that the code is slow AND the presented code runs in the context of a HTTP request, check if the code is running in a web server like Nginx or Apache, or even via FPM, and if so, suggest migrating to Octane with Swoole or OpenSwoole for better performance.
+
+- Octane Optimization flow (Laravel only):
+
+Before suggesting Octane, make sure that the Laravel version installed into the project is compatible with Octane.
+
+If the project is missing any dependencies, suggest installing them and guide the developer through the process of migrating to Octane.
+
+If Octane is not compatible with their Laravel version, suggest migrating to a newer version of Laravel that is compatible with Octane. If the user rejects the suggestion, proceed with the rest of the analysis. Let the user know that Octane would've improved the performance of the codebase, but they opted to not migrate to it and, as such, other minor optimizations will be applied to the codebase to improve performance, make it clear that a huge overhead on HTTP requests in PHP is being caused by the codebase and massive vendor loads which would've been mitigated by Octane.
 
 #### 3.2 Memory Analysis
 
