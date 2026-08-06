@@ -15,6 +15,7 @@ Install it for the current user instead:
 The Markdown filenames become command names:
 
 - /knowledge-base-generator
+- /mongodb-optimization-engineer
 - /php-optimization-engineer
 - /web-performance-optimizer
 - /youtube-step-extractor

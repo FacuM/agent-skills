@@ -7,6 +7,7 @@ A collection of reusable, task-focused skills for AI coding agents. Each skill l
 | Skill | Use it for |
 | --- | --- |
 | [`knowledge-base-generator`](knowledge-base-generator/SKILL.md) | Researching a recurring failure and recording the verified workaround in a project knowledge base. |
+| [`mongodb-optimization-engineer`](mongodb-optimization-engineer/SKILL.md) | Diagnosing and optimizing MongoDB queries, aggregations, driver usage, and index requirements inside application projects. |
 | [`php-optimization-engineer`](php-optimization-engineer/SKILL.md) | Profiling and optimizing PHP applications, database access, memory use, and runtime behavior. |
 | [`web-performance-optimizer`](web-performance-optimizer/SKILL.md) | Running an end-to-end web performance loop: diagnosis, production-like baseline, safe optimization, remeasurement, and evidence handoff. |
 | [`youtube-step-extractor`](youtube-step-extractor/SKILL.md) | Extracting frames from a YouTube video and turning the visual workflow into reproducible steps. |
@@ -87,11 +88,29 @@ The skill guides the agent through:
 
 It does not require a particular framework. The target project must provide its own build, test, serve, deployment, and audit tooling.
 
+## Use `mongodb-optimization-engineer`
+
+Mention the skill and provide the project path plus the slow endpoint, job, command, or query concern:
+
+```text
+Use mongodb-optimization-engineer on this project.
+Investigate the slow customer search endpoint, establish a repeatable baseline, and recommend query or index changes before editing any files.
+```
+
+With the Claude Code command pack installed:
+
+```text
+/mongodb-optimization-engineer . investigate the slow customer search endpoint and its aggregation pipeline
+```
+
+The skill traces the application flow through its MongoDB driver or ODM, measures query behavior, checks query shapes and index requirements against current official MongoDB guidance, and requests approval before applying project changes. Live database changes require separate explicit approval.
+
 ## Dependencies
 
 | Skill | Runtime or integration requirements |
 | --- | --- |
 | `knowledge-base-generator` | A web- or GitHub-search capability for researching upstream issues. |
+| `mongodb-optimization-engineer` | The target project's runtime and test tools; read-only MongoDB access, traces, slow-query logs, or explain output are optional but improve runtime validation. |
 | `php-optimization-engineer` | A compatible PHP runtime or Docker environment; use SPX for runtime profiling unless it remains genuinely unavailable. |
 | `web-performance-optimizer` | The target project's build/test/serve commands and a production-like browser or audit harness such as Lighthouse. |
 | `youtube-step-extractor` | `yt-dlp`, `ffmpeg`, `ffprobe`, and `bc`; installation examples are in its `SKILL.md`. |
